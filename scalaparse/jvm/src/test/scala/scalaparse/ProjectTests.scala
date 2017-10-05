@@ -110,8 +110,8 @@ object ProjectTests extends TestSuite{
     // takes forever to clone on crappy internet =/
     "JetBrains/intellij-scala" - checkRepo(
       x => !Seq(
-        // don't know why this fails
-        "target/repos/intellij-scala/testdata/scalacTests/failed/t389.scala"
+        // TODO: report upstream
+        "target/repos/intellij-scala/scala/scala-impl/testdata/scalacTests/failed/t389"
       ).exists(x.startsWith)
     )
     "scalatest/scalatest" - checkRepo(
