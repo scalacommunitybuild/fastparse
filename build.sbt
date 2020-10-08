@@ -3,7 +3,7 @@ ThisBuild / scalaVersion := "2.13.3"
 ThisBuild / testFrameworks += new TestFramework("utest.runner.Framework")
 
 val commonSettings = Seq(
-  libraryDependencies += "com.lihaoyi" %% "utest" % "0.7.0" % Test,
+  libraryDependencies += "com.lihaoyi" %% "utest" % "0.7.4" % Test,
   libraryDependencies += "org.scala-lang" % "scala-reflect" % scalaVersion.value,
 )
 
@@ -13,7 +13,8 @@ lazy val fastparse = project.in(file("fastparse"))
   .settings(commonSettings)
   .settings(
     // Compile
-    libraryDependencies += "com.lihaoyi" %% "sourcecode" % "0.1.7",
+    libraryDependencies += "com.lihaoyi" %% "sourcecode" % "0.2.1",
+    libraryDependencies += "com.lihaoyi" %% "geny" % "0.6.0",
     unmanagedSourceDirectories in Compile ++= Seq(baseDirectory.value / "src", baseDirectory.value / "src-jvm"),
     // Test
     unmanagedSourceDirectories in Test += baseDirectory.value / "test" / "src",
