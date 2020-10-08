@@ -1,15 +1,15 @@
-organization in ThisBuild := "com.lihaoyi"
-scalaVersion in ThisBuild := "2.13.0"
-testFrameworks in ThisBuild += new TestFramework("utest.runner.Framework")
+ThisBuild / organization := "com.lihaoyi"
+ThisBuild / scalaVersion := "2.13.3"
+ThisBuild / testFrameworks += new TestFramework("utest.runner.Framework")
 
-val commonSettings = Seq (
+val commonSettings = Seq(
   libraryDependencies += "com.lihaoyi" %% "utest" % "0.7.0" % Test,
   libraryDependencies += "org.scala-lang" % "scala-reflect" % scalaVersion.value,
 )
 
-skip in publish := true  // don't publish root project
+publish / skip := true  // don't publish root project
 
-lazy val fastparse = (project in file("fastparse"))
+lazy val fastparse = project.in(file("fastparse"))
   .settings(commonSettings)
   .settings(
     // Compile
@@ -53,14 +53,14 @@ lazy val fastparse = (project in file("fastparse"))
     }
   )
 
-lazy val scalaparse = (project in file("scalaparse"))
+lazy val scalaparse = project.in(file("scalaparse"))
   .settings(commonSettings)
   .settings(
-    unmanagedSourceDirectories in Compile += baseDirectory.value / "src",
-    unmanagedSourceDirectories in Test += baseDirectory.value / "test" / "src",
-    unmanagedSourceDirectories in Test += baseDirectory.value / "test" / "src-jvm",
-    unmanagedResourceDirectories in Test += baseDirectory.value / "test" / "resources",
-    libraryDependencies += "junit" % "junit" % "4.12" % Test,
+    Compile / unmanagedSourceDirectories += baseDirectory.value / "src",
+    Test / unmanagedSourceDirectories += baseDirectory.value / "test" / "src",
+    Test / unmanagedSourceDirectories += baseDirectory.value / "test" / "src-jvm",
+    Test / unmanagedResourceDirectories += baseDirectory.value / "test" / "resources",
+    libraryDependencies += "junit" % "junit" % "4.13" % Test,
     libraryDependencies += "org.scala-lang" % "scala-compiler" % scalaVersion.value,
   )
   .dependsOn(fastparse)
