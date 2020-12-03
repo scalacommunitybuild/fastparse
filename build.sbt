@@ -12,18 +12,13 @@ def macroDependencies(version: String) =
   collection.Seq(
     "org.scala-lang" % "scala-reflect" % version % "provided",
     "org.scala-lang" % "scala-compiler" % version % "provided"
-  ) ++
-  (if (version startsWith "2.10.")
-     collection.Seq(compilerPlugin("org.scalamacros" % s"paradise" % "2.1.0" cross CrossVersion.full),
-         "org.scalamacros" %% s"quasiquotes" % "2.1.0")
-   else
-     collection.Seq())
+  )
 
 val shared = collection.Seq(
   libraryDependencies ++= macroDependencies(scalaVersion.value),
   libraryDependencies ++= collection.Seq(
-    "com.lihaoyi" %%% "utest" % "0.7.1" % "test",
-    "com.lihaoyi" %%% "sourcecode" % "0.1.7"
+    "com.lihaoyi" %%% "utest" % "0.7.4" % "test",
+    "com.lihaoyi" %%% "sourcecode" % "0.2.1"
   ),
   scalaJSStage in Global := FullOptStage,
   organization := "org.scalameta",
@@ -228,7 +223,9 @@ lazy val demo = project.enablePlugins(ScalaJSPlugin)
     is212Only,
     libraryDependencies += "org.scala-js" %%% "scalajs-dom" % "0.9.2",
     libraryDependencies += "com.lihaoyi" %%% "scalatags" % "0.6.5",
-    emitSourceMaps := false,
+    scalaJSLinkerConfig ~= {
+      _.withSourceMap(false)
+    },
     noPublish
   )
 
