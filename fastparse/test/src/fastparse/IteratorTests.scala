@@ -59,7 +59,7 @@ object IteratorTests extends TestSuite {
 
     test("whitespaceImmediateCutDrop"){
       import NoWhitespace._
-      implicit def whitespace{implicit ctx: P[_] =>
+      implicit def whitespace = {implicit ctx: P[_] =>
         " ".? ~ " ".rep
       }
 
