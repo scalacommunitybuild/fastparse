@@ -1,5 +1,6 @@
-ThisBuild / organization := "com.lihaoyi"
-ThisBuild / scalaVersion := "2.13.3"
+ThisBuild / organization := "org.scalameta"
+ThisBuild / name := "fastparse-v2"
+ThisBuild / scalaVersion := "2.13.6"
 ThisBuild / testFrameworks += new TestFramework("utest.runner.Framework")
 
 val commonSettings = Seq(
